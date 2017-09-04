@@ -13,7 +13,7 @@ start() {
 	mkdir /fanRADIO/
 	cd /fanRADIO/
 	git init
-	remote add -t master -f master https://github.com/litzinetz-de/fanRADIO.git
+	git remote add -t master -f master https://github.com/litzinetz-de/fanRADIO.git
 	git checkout master
 	git pull
 	chmod u+x /fanRADIO/src/*.sh
