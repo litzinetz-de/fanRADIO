@@ -9,8 +9,20 @@
 ### END INIT INFO
 
 start() {
-  cd /root/fanRADIO/src/
-  /root/fanRADIO/src/radio_init.sh &
+  if [ ! -d "/fanRADIO/" ]; then # init dir if not done yet
+	mkdir /fanRADIO/
+	cd /fanRADIO/
+	git init
+	remote add -t master -f master https://github.com/litzinetz-de/fanRADIO.git
+	git checkout master
+	git pull
+	chmod u+x /fanRADIO/src/*.sh
+  else # update from branch
+	cd /fanRADIO/
+	git pull
+  fi
+  cd /fanRADIO/src/
+  /fanRADIO/src/radio_init.sh &
 }
 
 stop() {
